@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,6 +24,7 @@ class _AuthScreenState extends State<AuthScreen> {
   var enteredEmail = '';
   var enteredPassword = '';
   var _isAuthenticating=false;
+  var _enteredUsername="";
   File? _selectedImage;
 
   void _submit() async {
@@ -50,7 +52,11 @@ class _AuthScreenState extends State<AuthScreen> {
         final storageRef=FirebaseStorage.instance.ref().child('user_images').child('${userCredentials.user!.uid}.jpg');
         await storageRef.putFile(_selectedImage!);
         final imageUrl=await storageRef.getDownloadURL();
-        print(imageUrl);
+        await FirebaseFirestore.instance.collection('users').doc(userCredentials.user!.uid).set({
+          'username':_enteredUsername,
+          'email': enteredEmail,
+          'image_url':imageUrl
+        });
       }
     } on FirebaseAuthException catch (error) {
       // if(error.code=="email-already-in-use"){
@@ -110,6 +116,21 @@ class _AuthScreenState extends State<AuthScreen> {
                           },
                           onSaved: (value) {
                             enteredEmail = value!;
+                          },
+                        ),
+                        if(!_isLogin)
+                          TextFormField(
+                          decoration: InputDecoration(
+                            labelText: "username"
+                          ),
+                          enableSuggestions: false,
+                          validator: (value){
+                            if(value==null || value.isEmpty || value.length<4){
+                              return "please enter atleast 4 characters ";
+                            }
+                          },
+                          onSaved: (value){
+                            _enteredUsername=value!;
                           },
                         ),
                         TextFormField(
