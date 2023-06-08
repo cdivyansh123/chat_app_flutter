@@ -66,7 +66,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '566072029937',
     projectId: 'flutter-chat-app-f9424',
     storageBucket: 'flutter-chat-app-f9424.appspot.com',
-    iosClientId: '566072029937-hjre66904bg4a881c1lasgjk8th7snv5.apps.googleusercontent.com',
+    iosClientId:
+        '566072029937-hjre66904bg4a881c1lasgjk8th7snv5.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterChatApp',
   );
 
@@ -76,7 +77,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '566072029937',
     projectId: 'flutter-chat-app-f9424',
     storageBucket: 'flutter-chat-app-f9424.appspot.com',
-    iosClientId: '566072029937-hjre66904bg4a881c1lasgjk8th7snv5.apps.googleusercontent.com',
+    iosClientId:
+        '566072029937-hjre66904bg4a881c1lasgjk8th7snv5.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterChatApp',
   );
 }
