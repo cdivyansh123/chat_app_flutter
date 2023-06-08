@@ -7,7 +7,7 @@ class SplashScreen extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Fultter Chat"),
+        title: Text("Chat"),
       ),
       body: Center(
         child: Text("Loading...."),
